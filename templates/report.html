@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reports | IT Ticketing System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-dark app-navbar"><div class="container"><a class="navbar-brand fw-bold" href="{{ url_for('admin') }}">IT Ticketing System</a><a class="btn btn-outline-light" href="{{ url_for('admin') }}">Back to tickets</a></div></nav>
+<main class="container py-5">
+  <h1 class="h3 fw-bold mb-4">Ticket report</h1>
+  <div class="row g-3 mb-4">
+    <div class="col-md-4"><div class="card app-card"><div class="card-body"><div class="text-secondary">Total tickets</div><div class="display-5 fw-bold">{{ total }}</div></div></div></div>
+    <div class="col-md-4"><div class="card app-card"><div class="card-body"><div class="text-secondary">Open tickets</div><div class="display-5 fw-bold text-warning">{{ open_count }}</div></div></div></div>
+    <div class="col-md-4"><div class="card app-card"><div class="card-body"><div class="text-secondary">Answered tickets</div><div class="display-5 fw-bold text-success">{{ answered_count }}</div></div></div></div>
+  </div>
+  <div class="card app-card"><div class="card-body p-4">
+    <h2 class="h5 fw-bold mb-3">Tickets by category</h2>
+    {% if by_category %}
+      <div class="table-responsive"><table class="table mb-0"><thead><tr><th>Category</th><th>Number of tickets</th></tr></thead><tbody>
+      {% for row in by_category %}<tr><td>{{ row['category'] }}</td><td>{{ row['count'] }}</td></tr>{% endfor %}
+      </tbody></table></div>
+    {% else %}<p class="text-secondary mb-0">There is no ticket data yet.</p>{% endif %}
+  </div></div>
+</main>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Track ticket | IT Ticketing System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-dark app-navbar"><div class="container"><a class="navbar-brand fw-bold" href="{{ url_for('home') }}">IT Ticketing System</a><a class="btn btn-outline-light" href="{{ url_for('home') }}">New ticket</a></div></nav>
+<main class="container py-5"><div class="row justify-content-center"><div class="col-lg-7">
+  <h1 class="h3 fw-bold mb-2">Track your ticket</h1><p class="text-secondary mb-4">Enter the tracking code you received and the phone number used when submitting the ticket.</p>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}
+  {% endwith %}
+  <div class="card app-card"><div class="card-body p-4">
+    <form method="POST">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+      <div class="mb-3"><label class="form-label" for="tracking_code">Tracking code</label><input class="form-control" id="tracking_code" name="tracking_code" required></div>
+      <div class="mb-3"><label class="form-label" for="phone">Phone number</label><input class="form-control" id="phone" name="phone" required></div>
+      <button class="btn btn-primary" type="submit">Find ticket</button>
+    </form>
+  </div></div>
+  {% if ticket %}
+  <div class="card app-card mt-4"><div class="card-body p-4">
+    <div class="d-flex justify-content-between align-items-center gap-2 mb-3"><h2 class="h5 mb-0">Ticket #{{ ticket['id'] }}</h2>
+      {% if ticket['status'] == 'Answered' %}<span class="badge text-bg-success">Answered</span>{% else %}<span class="badge text-bg-warning">Open</span>{% endif %}
+    </div>
+    <p><strong>Category:</strong> {{ ticket['category'] }}</p>
+    <p><strong>Submitted:</strong> {{ ticket['created_at'] }}</p>
+    <p><strong>Description:</strong><br>{{ ticket['description'] }}</p>
+    {% if ticket['response'] %}<div class="alert alert-info mb-0"><strong>IT support response</strong><p class="mb-0 mt-2">{{ ticket['response'] }}</p></div>
+    {% else %}<p class="text-secondary mb-0">The IT team has not responded yet.</p>{% endif %}
+  </div></div>
+  {% endif %}
+</div></div></main>
+</body>
+</html>

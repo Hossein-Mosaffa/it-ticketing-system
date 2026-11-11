@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root { --brand: #155eef; --ink: #182230; --muted: #667085; }
+body { background: #f5f7fb; color: var(--ink); font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; min-height: 100vh; }
+.app-navbar { background: #123b75; padding: .9rem 0; }
+.navbar-brand { letter-spacing: -.02em; }
+.app-card { border: 1px solid #e5eaf2; border-radius: 16px; box-shadow: 0 8px 30px rgba(16, 24, 40, .05); }
+.form-control, .form-select { border-color: #d0d5dd; border-radius: 9px; padding: .75rem .9rem; }
+.form-control:focus, .form-select:focus { border-color: #84adff; box-shadow: 0 0 0 .2rem rgba(21, 94, 239, .12); }
+.form-label { font-weight: 600; }
+.btn { border-radius: 9px; }
+.btn-primary { background: var(--brand); border-color: var(--brand); }
+.page-icon, .success-icon { width: 58px; height: 58px; display: grid; place-items: center; border-radius: 16px; background: #eaf1ff; color: var(--brand); font-size: 1.5rem; margin: 0 auto 1rem; }
+.success-icon { background: #e7f8ef; color: #079455; border-radius: 50%; }
+.description-cell { min-width: 220px; max-width: 320px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.tracking-code { display: inline-block; padding: 14px 24px; border: 1px dashed #84adff; border-radius: 12px; background: #f0f5ff; color: #1849a9; font: 700 1.5rem ui-monospace, monospace; letter-spacing: .12em; }
+table th { white-space: nowrap; font-size: .85rem; color: #475467; }
+table td { font-size: .9rem; }
+@media (max-width: 576px) { .navbar-brand { font-size: 1rem; } .tracking-code { font-size: 1.2rem; } }
