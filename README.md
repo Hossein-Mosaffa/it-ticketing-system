@@ -80,3 +80,5 @@ it_ticketing_system/
 - Run behind HTTPS and a production WSGI server before exposing it to the internet.
 - Set a strong `SECRET_KEY` and unique admin credentials.
 - The app includes basic CSRF checks, input validation, upload extension checks, and a 10 MB upload limit. For a public deployment, consider stronger rate limiting, audit logging, role management, malware scanning, and stricter file-content validation.
+
+- [Hossein Mosaffa's personal website](https://hossein-mosaffa.github.io)
